@@ -21,6 +21,10 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        cmdLlenadoManual.setEnabled(false);
+        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        
     }
 
     /**
@@ -39,9 +43,10 @@ public class Principal extends javax.swing.JFrame {
         txtL = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         cmdCrear = new javax.swing.JButton();
-        cmdLlenar = new javax.swing.JButton();
+        cmdLlenadoManual = new javax.swing.JButton();
         cmdMostrar = new javax.swing.JButton();
         cmdBorrar = new javax.swing.JButton();
+        cmdLlenadoAutonomatico = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtR = new javax.swing.JTextArea();
@@ -53,7 +58,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Operaciones Con Vectores");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos iniciales"));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,15 +87,15 @@ public class Principal extends javax.swing.JFrame {
                 cmdCrearActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, -1));
+        jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, -1));
 
-        cmdLlenar.setText("Llenar");
-        cmdLlenar.addActionListener(new java.awt.event.ActionListener() {
+        cmdLlenadoManual.setText("Llenado Manual");
+        cmdLlenadoManual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdLlenarActionPerformed(evt);
+                cmdLlenadoManualActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdLlenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 70, -1));
+        jPanel3.add(cmdLlenadoManual, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 150, -1));
 
         cmdMostrar.setText("Mostrar");
         cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +103,7 @@ public class Principal extends javax.swing.JFrame {
                 cmdMostrarActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
+        jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 150, -1));
 
         cmdBorrar.setText("Borrar");
         cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,9 +111,17 @@ public class Principal extends javax.swing.JFrame {
                 cmdBorrarActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 70, 20));
+        jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 150, 30));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 90, 270));
+        cmdLlenadoAutonomatico.setText("Llenado Automatico");
+        cmdLlenadoAutonomatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlenadoAutonomaticoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(cmdLlenadoAutonomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 150, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 170, 270));
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -122,9 +135,10 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 240, 130));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 390));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 370));
 
-        pack();
+        setSize(new java.awt.Dimension(531, 409));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
@@ -144,9 +158,16 @@ public class Principal extends javax.swing.JFrame {
             v = new double[longitud];
             JOptionPane.showMessageDialog(this, "Vector Creado Satisfatoriamente");
             txtL.setText("");
+            
+        cmdCrear.setEnabled(false);
+        cmdLlenadoManual.setEnabled(true);
+        cmdLlenadoAutonomatico.setEnabled(true);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        txtL.setEditable(false);
 
         }
-
+        
 
     }//GEN-LAST:event_cmdCrearActionPerformed
 
@@ -159,7 +180,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtLKeyTyped
 
-    private void cmdLlenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarActionPerformed
+    private void cmdLlenadoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoManualActionPerformed
 
         double n;
         for (int i = 0; i < v.length; i++) {
@@ -167,15 +188,32 @@ public class Principal extends javax.swing.JFrame {
             v[i] = n;
 
         }
+        
+        JOptionPane.showMessageDialog(this, "Vector Creado Satisfatoriamente");
+        
+        cmdCrear.setEnabled(false);
+        cmdLlenadoManual.setEnabled(false);
+        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdMostrar.setEnabled(true);
+        cmdBorrar.setEnabled(true);
 
-    }//GEN-LAST:event_cmdLlenarActionPerformed
+    }//GEN-LAST:event_cmdLlenadoManualActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
 
+        
         for (int i = 0; i < v.length; i++) {
             txtR.append("" + v[i] + "\n");
 
         }
+        
+        cmdCrear.setEnabled(false);
+        cmdLlenadoManual.setEnabled(false);
+        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+
+        
     }//GEN-LAST:event_cmdMostrarActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
@@ -184,6 +222,13 @@ public class Principal extends javax.swing.JFrame {
         txtR.setText("");
         txtL.requestFocusInWindow();
         v = null;
+        
+        cmdCrear.setEnabled(true);
+        cmdLlenadoManual.setEnabled(false);
+        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        txtL.setEditable(true);
     }//GEN-LAST:event_cmdBorrarActionPerformed
 
     private void txtLKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLKeyPressed
@@ -205,9 +250,37 @@ public class Principal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vector Creado Satisfatoriamente");
             txtL.setText("");
 
+        cmdCrear.setEnabled(false);
+        cmdLlenadoManual.setEnabled(true);
+        cmdLlenadoAutonomatico.setEnabled(true);
+        cmdMostrar.setEnabled(false);
+        cmdBorrar.setEnabled(true);
+        txtL.setEditable(false);
+
         }
+        
+
         }
     }//GEN-LAST:event_txtLKeyPressed
+
+    private void cmdLlenadoAutonomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoAutonomaticoActionPerformed
+        
+        double n;
+        for (int i = 0; i < v.length; i++) {
+            n = (int) (Math.random()*25+1);
+            v[i] = n;
+        }
+         
+        
+        JOptionPane.showMessageDialog(this, "Vector Llenado Satisfactoriamente");
+        
+        cmdCrear.setEnabled(false);
+        cmdLlenadoManual.setEnabled(false);
+        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdMostrar.setEnabled(true);
+        cmdBorrar.setEnabled(true);
+
+    }//GEN-LAST:event_cmdLlenadoAutonomaticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -247,7 +320,8 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdBorrar;
     private javax.swing.JButton cmdCrear;
-    private javax.swing.JButton cmdLlenar;
+    private javax.swing.JButton cmdLlenadoAutonomatico;
+    private javax.swing.JButton cmdLlenadoManual;
     private javax.swing.JButton cmdMostrar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
