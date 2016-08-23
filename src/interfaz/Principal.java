@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +17,8 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
-    double v[]; 
+    double v[];
+
     public Principal() {
         initComponents();
     }
@@ -60,6 +62,9 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, -1, -1));
 
         txtL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtLKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtLKeyTyped(evt);
             }
@@ -125,29 +130,24 @@ public class Principal extends javax.swing.JFrame {
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
 
         int longitud;
-        
+
         if (txtL.getText().trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Digite La Longitud","ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Digite La Longitud", "ERROR", JOptionPane.ERROR_MESSAGE);
             txtL.requestFocusInWindow();
-        }
-        else if (txtL.getText().trim().equalsIgnoreCase("0")) {
-            JOptionPane.showMessageDialog(this, "Digite Una Longitud Superior A 0","ERROR", JOptionPane.ERROR_MESSAGE);
+        } else if (txtL.getText().trim().equalsIgnoreCase("0")) {
+            JOptionPane.showMessageDialog(this, "Digite Una Longitud Superior A 0", "ERROR", JOptionPane.ERROR_MESSAGE);
             txtL.requestFocusInWindow();
             txtL.selectAll();
-        }
-        
-        else{
-           
+        } else {
+
             longitud = Integer.parseInt(txtL.getText());
             v = new double[longitud];
-            
-            JOptionPane.showMessageDialog(this,"Vector Creado Satisfatoriamente");
+            JOptionPane.showMessageDialog(this, "Vector Creado Satisfatoriamente");
             txtL.setText("");
-            
+
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_cmdCrearActionPerformed
 
     private void txtLKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLKeyTyped
@@ -163,18 +163,18 @@ public class Principal extends javax.swing.JFrame {
 
         double n;
         for (int i = 0; i < v.length; i++) {
-            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posicion "+i));
+            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posicion " + i));
             v[i] = n;
-            
+
         }
-        
+
     }//GEN-LAST:event_cmdLlenarActionPerformed
 
     private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
 
         for (int i = 0; i < v.length; i++) {
-           txtR.append(""+v[i]+"\n");
-            
+            txtR.append("" + v[i] + "\n");
+
         }
     }//GEN-LAST:event_cmdMostrarActionPerformed
 
@@ -185,6 +185,29 @@ public class Principal extends javax.swing.JFrame {
         txtL.requestFocusInWindow();
         v = null;
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtLKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtLKeyPressed
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int longitud;
+
+        if (txtL.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Digite La Longitud", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtL.requestFocusInWindow();
+        } else if (txtL.getText().trim().equalsIgnoreCase("0")) {
+            JOptionPane.showMessageDialog(this, "Digite Una Longitud Superior A 0", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtL.requestFocusInWindow();
+            txtL.selectAll();
+        } else {
+
+            longitud = Integer.parseInt(txtL.getText());
+            v = new double[longitud];
+            JOptionPane.showMessageDialog(this, "Vector Creado Satisfatoriamente");
+            txtL.setText("");
+
+        }
+        }
+    }//GEN-LAST:event_txtLKeyPressed
 
     /**
      * @param args the command line arguments
