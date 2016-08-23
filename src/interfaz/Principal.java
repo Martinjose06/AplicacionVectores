@@ -16,6 +16,7 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form Principal
      */
+    double v[]; 
     public Principal() {
         initComponents();
     }
@@ -79,12 +80,27 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.add(cmdCrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, -1));
 
         cmdLlenar.setText("Llenar");
+        cmdLlenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdLlenarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdLlenar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 70, -1));
 
         cmdMostrar.setText("Mostrar");
+        cmdMostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdMostrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdMostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 70, 20));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 60, 90, 270));
@@ -108,6 +124,8 @@ public class Principal extends javax.swing.JFrame {
 
     private void cmdCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCrearActionPerformed
 
+        int longitud;
+        
         if (txtL.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Digite La Longitud","ERROR", JOptionPane.ERROR_MESSAGE);
             txtL.requestFocusInWindow();
@@ -119,7 +137,13 @@ public class Principal extends javax.swing.JFrame {
         }
         
         else{
-            String r;
+           
+            longitud = Integer.parseInt(txtL.getText());
+            v = new double[longitud];
+            
+            JOptionPane.showMessageDialog(this,"Vector Creado Satisfatoriamente");
+            txtL.setText("");
+            
         }
         
         
@@ -134,6 +158,33 @@ public class Principal extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_txtLKeyTyped
+
+    private void cmdLlenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenarActionPerformed
+
+        double n;
+        for (int i = 0; i < v.length; i++) {
+            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posicion "+i));
+            v[i] = n;
+            
+        }
+        
+    }//GEN-LAST:event_cmdLlenarActionPerformed
+
+    private void cmdMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdMostrarActionPerformed
+
+        for (int i = 0; i < v.length; i++) {
+           txtR.append(""+v[i]+"\n");
+            
+        }
+    }//GEN-LAST:event_cmdMostrarActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+
+        txtL.setText("");
+        txtR.setText("");
+        txtL.requestFocusInWindow();
+        v = null;
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
