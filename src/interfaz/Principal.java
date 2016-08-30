@@ -22,7 +22,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         cmdLlenadoManual.setEnabled(false);
-        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdLlenadoAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(false);
         
     }
@@ -46,7 +46,7 @@ public class Principal extends javax.swing.JFrame {
         cmdLlenadoManual = new javax.swing.JButton();
         cmdMostrar = new javax.swing.JButton();
         cmdBorrar = new javax.swing.JButton();
-        cmdLlenadoAutonomatico = new javax.swing.JButton();
+        cmdLlenadoAutomatico = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtR = new javax.swing.JTextArea();
@@ -113,13 +113,13 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel3.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, 150, 30));
 
-        cmdLlenadoAutonomatico.setText("Llenado Automatico");
-        cmdLlenadoAutonomatico.addActionListener(new java.awt.event.ActionListener() {
+        cmdLlenadoAutomatico.setText("Llenado Automatico");
+        cmdLlenadoAutomatico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmdLlenadoAutonomaticoActionPerformed(evt);
+                cmdLlenadoAutomaticoActionPerformed(evt);
             }
         });
-        jPanel3.add(cmdLlenadoAutonomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 150, -1));
+        jPanel3.add(cmdLlenadoAutomatico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 150, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 170, 270));
 
@@ -161,7 +161,7 @@ public class Principal extends javax.swing.JFrame {
             
         cmdCrear.setEnabled(false);
         cmdLlenadoManual.setEnabled(true);
-        cmdLlenadoAutonomatico.setEnabled(true);
+        cmdLlenadoAutomatico.setEnabled(true);
         cmdMostrar.setEnabled(false);
         cmdBorrar.setEnabled(true);
         txtL.setEditable(false);
@@ -183,17 +183,26 @@ public class Principal extends javax.swing.JFrame {
     private void cmdLlenadoManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoManualActionPerformed
 
         double n;
+        int aux;
         for (int i = 0; i < v.length; i++) {
-            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posicion " + i));
-            v[i] = n;
-
+            do{
+            aux = 1;    
+            
+            try{
+            n = Double.parseDouble(JOptionPane.showInputDialog(this, "Digite el elemento en la posición: " + i));
+              v[i] = n;
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(this, "Digite la información correctamente","Error",JOptionPane.ERROR_MESSAGE);
+                aux=0;
+            }catch (NullPointerException e){
+                JOptionPane.showMessageDialog(this, "No es permitido salir","Error",JOptionPane.ERROR_MESSAGE);
+                 aux=0;
+            }
+            }while(aux == 0);
         }
-        
-        JOptionPane.showMessageDialog(this, "Vector Creado Satisfatoriamente");
-        
         cmdCrear.setEnabled(false);
         cmdLlenadoManual.setEnabled(false);
-        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdLlenadoAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(true);
         cmdBorrar.setEnabled(true);
 
@@ -209,7 +218,7 @@ public class Principal extends javax.swing.JFrame {
         
         cmdCrear.setEnabled(false);
         cmdLlenadoManual.setEnabled(false);
-        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdLlenadoAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(false);
         cmdBorrar.setEnabled(true);
 
@@ -225,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
         
         cmdCrear.setEnabled(true);
         cmdLlenadoManual.setEnabled(false);
-        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdLlenadoAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(false);
         cmdBorrar.setEnabled(true);
         txtL.setEditable(true);
@@ -252,7 +261,7 @@ public class Principal extends javax.swing.JFrame {
 
         cmdCrear.setEnabled(false);
         cmdLlenadoManual.setEnabled(true);
-        cmdLlenadoAutonomatico.setEnabled(true);
+        cmdLlenadoAutomatico.setEnabled(true);
         cmdMostrar.setEnabled(false);
         cmdBorrar.setEnabled(true);
         txtL.setEditable(false);
@@ -263,7 +272,7 @@ public class Principal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtLKeyPressed
 
-    private void cmdLlenadoAutonomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoAutonomaticoActionPerformed
+    private void cmdLlenadoAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLlenadoAutomaticoActionPerformed
         
         double n;
         for (int i = 0; i < v.length; i++) {
@@ -276,11 +285,11 @@ public class Principal extends javax.swing.JFrame {
         
         cmdCrear.setEnabled(false);
         cmdLlenadoManual.setEnabled(false);
-        cmdLlenadoAutonomatico.setEnabled(false);
+        cmdLlenadoAutomatico.setEnabled(false);
         cmdMostrar.setEnabled(true);
         cmdBorrar.setEnabled(true);
 
-    }//GEN-LAST:event_cmdLlenadoAutonomaticoActionPerformed
+    }//GEN-LAST:event_cmdLlenadoAutomaticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -320,7 +329,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdBorrar;
     private javax.swing.JButton cmdCrear;
-    private javax.swing.JButton cmdLlenadoAutonomatico;
+    private javax.swing.JButton cmdLlenadoAutomatico;
     private javax.swing.JButton cmdLlenadoManual;
     private javax.swing.JButton cmdMostrar;
     private javax.swing.JLabel jLabel1;
